@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Loader from './components/Loader';
+import Modal from './components/Modal';
+import { AnimatePresence } from 'framer-motion';
 import './App.css';
 
 function App() {
+  const [isDisplaying, setIsDisplaying] = useState(false);
+  const handleModal = () => {
+    setIsDisplaying(!isDisplaying)
+    console.log(isDisplaying)
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Loader />
+      <button onClick={handleModal}> press for modal </button>
+      <AnimatePresence>
+        { isDisplaying &&
+          <Modal isDisplaying={isDisplaying} handleModal={handleModal}/>
+        }
+      </AnimatePresence>
     </div>
   );
 }
