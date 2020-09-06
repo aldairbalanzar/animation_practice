@@ -4,9 +4,10 @@ import LoaderAnimation from './LoaderAnimation';
 
 const Loader = () => {
     const [isLoading, setIsLoading] = useState(false);
+
     const handleLoading = () => {
         setIsLoading(!isLoading)
-    }
+    };
     return (
         <div
         style={{  
@@ -21,14 +22,17 @@ const Loader = () => {
             justifyContent: 'center',
             flexDirection: 'column', }}>
             <AnimateSharedLayout>
+
                 <motion.header layoutId='header' onClick={handleLoading}>
                     <motion.h1 layoutId='logo'>Loader Component</motion.h1>
                 </motion.header>
+
                 <AnimatePresence>
-                {isLoading &&
-                   <LoaderAnimation handleLoading={handleLoading}/>
-                }
+                    {isLoading &&
+                        <LoaderAnimation handleLoading={handleLoading}/>
+                    }
                 </AnimatePresence>
+
             </AnimateSharedLayout>
         </div>
 
